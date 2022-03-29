@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
 .box1 {
-	display: inline-block;
-	width: 15%;
-	padding:5px .5em;
-	background:rgba(238, 238, 238, 0.26);
-	margin: .5em 1% .5em 0;
-	text-align: left;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	font-size:13px;
+  display: inline-block;
+  width: 15%;
+  padding: 5px 0.5em;
+  background: rgba(238, 238, 238, 0.26);
+  margin: 0.5em 1% 0.5em 0;
+  text-align: left;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 13px;
 }
 .fontawesome-icon-list a i {
-    margin-right:10px;
-    font-size:25px;
-    color:#757575;
+  margin-right: 10px;
+  font-size: 25px;
+  color: #757575;
 }
-.margin-top{
-	margin-top:20px;
+.margin-top {
+  margin-top: 20px;
 }
 
 /*--
@@ -3011,7 +3011,7 @@ input.checkbox:checked:after {
   margin: 0 0 20px;
   padding: 10px 15px;
   box-sizing: border-box;
-  font-wieght: 400;
+  font-weight: 400;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
   font-size: 14px;
