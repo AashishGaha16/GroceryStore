@@ -19,19 +19,17 @@
       <ul class="nav navbar-nav nav_1">
         <li><a routerLink="products">Branded Foods</a></li>
         <li><a routerLink="households">Households</a></li>
-        <li class="dropdown mega-dropdown active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            >Veggies & Fruits<span class="caret"></span
+
+        <li dropdown class="w3ls_vegetables dropdown">
+          <a dropdownToggle class="dropdown-toggle" data-toggle="dropdown"
+            >Veggies & Fruits <span class="caret"></span
           ></a>
-          <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-            <div class="w3ls_vegetables">
-              <ul>
-                <li><a routerLink="vegetables">Vegetables</a></li>
-                <li><a routerLink="vegetables">Fruits</a></li>
-              </ul>
-            </div>
-          </div>
+          <ul class="nav navbar-nav nav_1 dropdown-menu">
+            <li><a routerLink="vegetables">Vegetables</a></li>
+            <li><a routerLink="vegetables">Fruits</a></li>
+          </ul>
         </li>
+
         <li><a routerLink="kitchen">Kitchen</a></li>
         <li><a routerLink="shortcodes">Short Codes</a></li>
         <li class="dropdown">
