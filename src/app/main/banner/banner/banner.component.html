@@ -5,7 +5,7 @@
         <i class="fa fa-home" aria-hidden="true"></i
         ><a routerLink="/">Home</a><span>|</span>
       </li>
-      <li>category</li>
+      <li *ngFor="let banner of banners">{{banner}}</li>
     </ul>
   </div>
 </div>

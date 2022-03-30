@@ -5327,8 +5327,6 @@ input.checkbox:checked:after {
   }
 }
 
-
-
 /* Home Slider's button css */
 .slider-btn-caption {
   padding: 1em 2em;
@@ -5376,4 +5374,23 @@ input.checkbox:checked:after {
 
 .auth-icon:hover {
   color: #e63946;
+}
+
+.banner_overflow_auto {
+  overflow: auto;
+}
+
+.active > a {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid black !important;
+}
+
+.banner_right_width_auto {
+  width: auto;
+}
+
+.container_border_pad {
+  border: 1px solid black;
+  padding: 2rem;
 }
