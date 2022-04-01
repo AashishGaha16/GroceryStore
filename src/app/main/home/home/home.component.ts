@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product/product.service';
       justify-content: space-evenly;
       overflow: auto;
       margin:4em 1em;
-    },
+    }
     .product-figure{
       height: 400px;
     }
