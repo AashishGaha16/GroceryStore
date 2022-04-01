@@ -6,6 +6,7 @@ import { MainComponent } from './main/main.component';
 import { LayoutModule } from './layout/layout.module';
 import { BannerModule } from './banner/banner.module';
 
+
 @NgModule({
   declarations: [
     MainComponent,

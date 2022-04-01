@@ -3,12 +3,12 @@
     <div class="w3l_banner_nav_right_banner3">
       <h3>Best Deals For New Products<span class="blink_me"></span></h3>
     </div>
-    <div class="agileinfo_single">
-      <h5>charminar pulao basmati rice 5 kg</h5>
+    <div class="agileinfo_single" *ngIf="productData">
+      <h5>{{productData.title}}</h5>
       <div class="col-md-4 agileinfo_single_left">
         <img
           id="example"
-          src="assets/images/76.png"
+          src="{{productData.categoryBackgroundImage}}"
           alt=" "
           class="img-responsive"
         />
@@ -30,16 +30,13 @@
         </div>
         <div class="w3agile_description">
           <h4>Description :</h4>
-          <p>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
+          <div>
+            {{productData.description}}
+          </div>
         </div>
         <div class="snipcart-item block">
           <div class="snipcart-thumb agileinfo_single_right_snipcart">
-            <h4>$21.00 <span>$25.00</span></h4>
+            <h4>Rs: {{productData.unitPrice[0].sellingPrice}} <span>Rs: {{productData.unitPrice[0].markedPrice}} </span></h4>
           </div>
           <div class="snipcart-details agileinfo_single_right_details">
             <form action="#" method="post">

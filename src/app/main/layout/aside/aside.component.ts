@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category/category.service';
+
 
 @Component({
   selector: 'app-aside',
@@ -8,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
 
-  constructor() { }
+  categories: any;
+
+  constructor(private categoryData:CategoryService) {
+    categoryData.getCategory().subscribe((data) => {
+      this.categories=data['data'];
+    });
+  }
 
   ngOnInit(): void {
   }

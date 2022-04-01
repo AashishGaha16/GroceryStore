@@ -5394,3 +5394,9 @@ input.checkbox:checked:after {
   border: 1px solid black;
   padding: 2rem;
 }
+
+.banner_left_bar{
+  position:relative;
+  width: 0px !important;
+  height: 0px !important;
+}
