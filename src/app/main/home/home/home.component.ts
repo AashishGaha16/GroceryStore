@@ -1,35 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product/product.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styles: [`
-    .row-box-alignment{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      overflow: auto;
-      margin:4em 1em;
-    }
-    .product-figure{
-      height: 400px;
-    }
-    .figure-image{
-      width: 160px;
-      height: 160px;
-    }
-  `]
+  styles: [
+    
+  ]
 })
 export class HomeComponent implements OnInit {
 
   products: any;
+  configs: any;
 
-  constructor(private productData:ProductService) { 
+  constructor(private productData: ProductService, private configData: CategoryService) { 
     this.productData.getProductDetails().subscribe((data) => {
       this.products = data['data']
     });
+
+    this.configData.getConfigsData().subscribe((data) => {
+      this.configs = data['data']
+    });
   }
+
 
   ngOnInit(): void {
   }

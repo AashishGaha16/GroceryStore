@@ -41,6 +41,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
       <ul class="nav navbar-nav nav_1" *ngIf="categories">
+        <!-- snacks  -->
         <li dropdown class="w3ls_vegetables dropdown">
           <a
             dropdownToggle
@@ -51,35 +52,40 @@
           ></a>
           <ul class="nav navbar-nav nav_1 dropdown-menu">
             <li>
-              <a routerLink="products">
+              <a routerLink="nonveg">
                 {{ categories[0].subcategories.data[0].title }}
               </a>
             </li>
             <li>
-              <a routerLink="products">
+              <a routerLink="veg">
                 {{ categories[0].subcategories.data[1].title }}
               </a>
             </li>
           </ul>
         </li>
-
+        <!-- signatures -->
         <li>
-          <a routerLink="households"> {{ categories[1].title }} </a>
+          <a routerLink="signatures"> {{ categories[1].title }} </a>
         </li>
+        <!-- dalle momo -->
         <li>
-          <a routerLink="vegetables"> {{ categories[2].title }} </a>
+          <a routerLink="dalle_momo"> {{ categories[2].title }} </a>
         </li>
+        <!-- rice and noodles -->
         <li>
-          <a routerLink="kitchen"> {{ categories[3].title }} </a>
+          <a routerLink="rice_and_noodles"> {{ categories[3].title }} </a>
         </li>
+        <!-- frozen items -->
         <li>
-          <a routerLink="beverages"> {{ categories[4].title }} </a>
+          <a routerLink="frozen_items"> {{ categories[4].title }} </a>
         </li>
+        <!-- momo -->
         <li>
-          <a routerLink="frozenfoods"> {{ categories[5].title }} </a>
+          <a routerLink="momo"> {{ categories[5].title }} </a>
         </li>
+        <!-- signature  -->
         <li>
-          <a routerLink="bread&bakery"> {{ categories[6].title }} </a>
+          <a routerLink="signature"> {{ categories[6].title }} </a>
         </li>
 
         <!-- <li><a routerLink="products">Branded Foods</a></li>

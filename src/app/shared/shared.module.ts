@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

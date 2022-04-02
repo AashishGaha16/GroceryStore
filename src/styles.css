@@ -5400,3 +5400,20 @@ input.checkbox:checked:after {
   width: 0px !important;
   height: 0px !important;
 }
+
+.row-box-alignment{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  overflow: auto;
+  margin:4em 1em;
+}
+
+.product-figure{
+  height: 320px;
+}
+
+.figure-image{
+  width: 160px;
+  height: 160px;
+}

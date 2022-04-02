@@ -5,57 +5,181 @@
         <i class="fa fa-times fa-pencil"></i>
       </div>
 
-      <form class="form">
+      <div class="form">
         <h2>Create an account</h2>
-        <form
-          #signupForm="ngForm"
-          (ngSubmit)="postSignupData(signupForm.value)"
-        >
+        <form [formGroup]="signupForm" (ngSubmit)="signupUser()">
+          <div>
+            <!-- firstname input field  -->
+            <span
+              *ngIf="
+                signupFormControls['firstname'].errors &&
+                (signupFormControls['firstname'].touched ||
+                  signupFormControls['firstname'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['firstname'].errors?.['required']
+                "
+                >* firstname is required</span
+              >
+            </span>
+            <input
+              type="text"
+              formControlName="firstname"
+              name="Firstname"
+              placeholder="First Name"
+            />
+          </div>
+          <!-- lastname input field -->
+          <div>
+            <span
+              *ngIf="
+                signupFormControls['lastname'].errors &&
+                (signupFormControls['lastname'].touched ||
+                  signupFormControls['lastname'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['lastname'].errors?.['required']
+                "
+                >* lastname is required</span
+              >
+            </span>
+            <input
+              type="text"
+              formControlName="lastname"
+              name="Lastname"
+              placeholder="Last Name"
+            />
+          </div>
+          <!-- username input field  -->
+          <div>
+            <span
+              *ngIf="
+                signupFormControls['username'].errors &&
+                (signupFormControls['username'].touched ||
+                  signupFormControls['username'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['username'].errors?.['required']
+                "
+                >* username is required</span
+              >
+            </span>
+            <input
+              type="text"
+              formControlName="username"
+              name="Username"
+              placeholder="Username"
+            />
+          </div>
+          <!-- email input field  -->
+          <div>
+            <span
+              *ngIf="
+                signupFormControls['email'].errors &&
+                (signupFormControls['email'].touched ||
+                  signupFormControls['email'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['email'].errors?.['required']
+                "
+                >* email is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['email'].errors?.['email']"
+                >* email is not valid</span
+              >
+            </span>
+            <input
+              type="email"
+              formControlName="email"
+              name="Email"
+              placeholder="Email Address"
+            />
+          </div>
+          <!-- password input field  -->
+          <div>
+            <span
+              *ngIf="
+                signupFormControls['password'].errors &&
+                (signupFormControls['password'].touched ||
+                  signupFormControls['password'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['password'].errors?.['required']
+                "
+                >* password is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['password'].errors?.['minlength']
+                "
+                >* password must be at least 6 characters</span
+              >
+            </span>
+            <input
+              type="password"
+              formControlName="password"
+              name="Password"
+              placeholder="Password"
+            />
+          </div>
+          <!-- phone number input field  -->
+          <div>
+            <span
+              *ngIf="
+                signupFormControls['phoneNumber'].errors &&
+                (signupFormControls['phoneNumber'].touched ||
+                  signupFormControls['phoneNumber'].dirty)
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['phoneNumber'].errors?.['required']
+                "
+                >* phone number is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['phoneNumber'].errors?.['pattern']
+                "
+                >* phone number must be numbers</span
+              >
+            </span>
+            <input
+              type="text"
+              formControlName="phoneNumber"
+              name="Phone"
+              placeholder="Phone Number"
+            />
+          </div>
+          <!-- signup button  -->
           <input
-            type="text"
-            ngModel
-            name="Firstname"
-            placeholder="First Name"
-            required=" "
+            [disabled]="!signupForm.valid"
+            type="submit"
+            value="Register"
           />
-          <input
-            type="text"
-            ngModel
-            name="Lastname"
-            placeholder="Last Name"
-            required=" "
-          />
-          <input
-            type="text"
-            ngModel
-            name="Username"
-            placeholder="Username"
-            required=" "
-          />
-          <input
-            type="password"
-            ngModel
-            name="Password"
-            placeholder="Password"
-            required=" "
-          />
-          <input
-            type="email"
-            ngModel
-            name="Email"
-            placeholder="Email Address"
-            required=" "
-          />
-          <input
-            type="text"
-            ngModel
-            name="Phone"
-            placeholder="Phone Number"
-            required=" "
-          />
-          <input type="submit" value="Register" />
         </form>
-      </form>
+      </div>
       <div>
         <div *ngIf="alert" class="alert alert-success" role="alert">
           <button
