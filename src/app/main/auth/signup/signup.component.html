@@ -12,22 +12,22 @@
             <!-- firstname input field  -->
             <span
               *ngIf="
-                signupFormControls['firstname'].errors &&
-                (signupFormControls['firstname'].touched ||
-                  signupFormControls['firstname'].dirty)
+                signupFormControls['first_name'].errors &&
+                (signupFormControls['first_name'].touched ||
+                  signupFormControls['first_name'].dirty)
               "
             >
               <span
                 class="text-danger"
                 *ngIf="
-                  signupFormControls['firstname'].errors?.['required']
+                  signupFormControls['first_name'].errors?.['required']
                 "
                 >* firstname is required</span
               >
             </span>
             <input
               type="text"
-              formControlName="firstname"
+              formControlName="first_name"
               name="Firstname"
               placeholder="First Name"
             />
@@ -36,22 +36,22 @@
           <div>
             <span
               *ngIf="
-                signupFormControls['lastname'].errors &&
-                (signupFormControls['lastname'].touched ||
-                  signupFormControls['lastname'].dirty)
+                signupFormControls['last_name'].errors &&
+                (signupFormControls['last_name'].touched ||
+                  signupFormControls['last_name'].dirty)
               "
             >
               <span
                 class="text-danger"
                 *ngIf="
-                  signupFormControls['lastname'].errors?.['required']
+                  signupFormControls['last_name'].errors?.['required']
                 "
                 >* lastname is required</span
               >
             </span>
             <input
               type="text"
-              formControlName="lastname"
+              formControlName="last_name"
               name="Lastname"
               placeholder="Last Name"
             />
@@ -76,8 +76,8 @@
             <input
               type="text"
               formControlName="username"
-              name="Username"
-              placeholder="Username"
+              name="Lastname"
+              placeholder="username"
             />
           </div>
           <!-- email input field  -->
@@ -145,29 +145,36 @@
           <div>
             <span
               *ngIf="
-                signupFormControls['phoneNumber'].errors &&
-                (signupFormControls['phoneNumber'].touched ||
-                  signupFormControls['phoneNumber'].dirty)
+                signupFormControls['mobile_number'].errors &&
+                (signupFormControls['mobile_number'].touched ||
+                  signupFormControls['mobile_number'].dirty)
               "
             >
               <span
                 class="text-danger"
                 *ngIf="
-                  signupFormControls['phoneNumber'].errors?.['required']
+                  signupFormControls['mobile_number'].errors?.['required']
                 "
                 >* phone number is required</span
               >
               <span
                 class="text-danger"
                 *ngIf="
-                  signupFormControls['phoneNumber'].errors?.['pattern']
+                  signupFormControls['mobile_number'].errors?.['pattern']
                 "
                 >* phone number must be numbers</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  signupFormControls['mobile_number'].errors?.['maxlength']
+                "
+                >* phone number should contain exactly 10 numbers</span
               >
             </span>
             <input
               type="text"
-              formControlName="phoneNumber"
+              formControlName="mobile_number"
               name="Phone"
               placeholder="Phone Number"
             />
@@ -194,9 +201,9 @@
           <h4 class="alert-heading">Register successful</h4>
         </div>
       </div>
-      <div class="cta"><a href="#">Forgot your password?</a></div>
+      <div class="cta"><a routerLink="/forgot_password">Forgot your password?</a></div>
       <div class="cta" style="background-color: grey; border: 1px solid white">
-        <a routerLink="/login">Already have an account? Signin</a>
+        <a routerLink="/login">Already have an account? Login</a>
       </div>
     </div>
   </div>

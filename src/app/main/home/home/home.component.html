@@ -99,87 +99,81 @@
 </div>
 <!-- top-brands -->
 <!-- <div class="top-brands"> -->
-  <div class="container">
-    <h2 class="w3l_fruit" style="text-align: center; font-weight: bold;">Products</h2>
+<div class="container">
+  <h2 class="w3l_fruit" style="text-align: center; font-weight: bold">
+    Products
+  </h2>
+  <div
+    class="w3ls_w3l_banner_nav_right_grid1 w3ls_w3l_banner_nav_right_grid1_veg"
+  >
     <div
-      class="w3ls_w3l_banner_nav_right_grid1 w3ls_w3l_banner_nav_right_grid1_veg"
+      class="col-md-3 w3ls_w3l_banner_left w3ls_w3l_banner_left_asdfdfd"
+      *ngFor="let product of products"
+      style="padding-bottom: 30px"
     >
-      <div
-        class="col-md-3 w3ls_w3l_banner_left w3ls_w3l_banner_left_asdfdfd"
-        *ngFor="let product of products"
-        style="padding-bottom: 30px"
-      >
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img
-                src="assets/images/offer.png"
-                alt=" "
-                class="img-responsive"
-              />
-            </div>
+      <div class="hover14 column">
+        <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+          <div class="agile_top_brand_left_grid_pos">
+            <img src="assets/images/offer.png" alt=" " class="img-responsive" />
+          </div>
 
-            <div class="row-box-alignment" style="margin: 1em !important;">
-              <div class="agile_top_brand_left_grid1">
-                <figure class="product-figure">
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a routerLink="/item/{{ product.id }}"
-                        ><img
-                          src="{{ product.categoryBackgroundImage }}"
-                          alt=" "
-                          class="img-responsive figure-image"
-                      /></a>
-                      <div style="width: 100%; height: 70px;">
-                        <p>{{ product.title }}</p>
+          <div class="row-box-alignment" style="margin: 1em !important">
+            <div class="agile_top_brand_left_grid1">
+              <figure class="product-figure">
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a routerLink="/item/{{ product.id }}"
+                      ><img
+                        src="{{ product.categoryBackgroundImage }}"
+                        alt=" "
+                        class="img-responsive figure-image"
+                    /></a>
+                    <div style="width: 100%; height: 70px">
+                      <p>{{ product.title }}</p>
                       <h4>
                         Rs: {{ product.unitPrice[0].sellingPrice
                         }}<span>Rs:{{ product.unitPrice[0].markedPrice }}</span>
                       </h4>
-                      </div>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart" />
-                          <input type="hidden" name="add" value="1" />
-                          <input type="hidden" name="business" value=" " />
-                          <input
-                            type="hidden"
-                            name="item_name"
-                            value="raisin rolls"
-                          />
-                          <input type="hidden" name="amount" value="4.00" />
-                          <input
-                            type="hidden"
-                            name="discount_amount"
-                            value="1.00"
-                          />
-                          <input
-                            type="hidden"
-                            name="currency_code"
-                            value="USD"
-                          />
-                          <input type="hidden" name="return" value=" " />
-                          <input type="hidden" name="cancel_return" value=" " />
-                          <input
-                            type="submit"
-                            name="submit"
-                            value="Add to cart"
-                            class="button"
-                          />
-                        </fieldset>
-                      </form>
                     </div>
                   </div>
-                </figure>
-              </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="add" value="1" />
+                        <input type="hidden" name="business" value=" " />
+                        <input
+                          type="hidden"
+                          name="item_name"
+                          value="raisin rolls"
+                        />
+                        <input type="hidden" name="amount" value="4.00" />
+                        <input
+                          type="hidden"
+                          name="discount_amount"
+                          value="1.00"
+                        />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="hidden" name="return" value=" " />
+                        <input type="hidden" name="cancel_return" value=" " />
+                        <input
+                          type="submit"
+                          name="submit"
+                          value="Add to cart"
+                          class="button"
+                        />
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <!-- </div> -->
 <!-- //top-brands -->
 <!-- fresh-vegetables -->

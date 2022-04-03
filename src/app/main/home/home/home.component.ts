@@ -13,10 +13,13 @@ export class HomeComponent implements OnInit {
 
   products: any;
   configs: any;
+  totalItems: any;
+  page: number = 1
 
   constructor(private productData: ProductService, private configData: CategoryService) { 
     this.productData.getProductDetails().subscribe((data) => {
       this.products = data['data']
+      this.totalItems = data['data'].length
     });
 
     this.configData.getConfigsData().subscribe((data) => {
