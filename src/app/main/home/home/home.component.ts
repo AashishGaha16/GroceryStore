@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   search_query: any = {title: ''}
 
-  constructor(private productService: ProductService, private configData: CategoryService) { 
+  constructor(private productService: ProductService, private configData: CategoryService, private message: MessageService) { 
     this.productService.getProductDetails().subscribe((data) => {
       this.products = data['data']
       this.totalItems = data['data'].length;
@@ -38,12 +39,15 @@ export class HomeComponent implements OnInit {
 
   postAddtocart(productId: number, priceId: number,) {
     this.productService.addToCart(productId, priceId).subscribe((response) => {
-      alert("Add to cart successful")
+      this.message.successMessage("Added to cart!!!")
     },
     (err) => {
-      alert(err)
-    }
-    )
+      const error = err.error['errors'];
+        
+        for(let e in error){
+          this.message.errorMessage(error[e].title , error[e].message);
+        }
+    })
   }
 
 

@@ -11,18 +11,18 @@ export class ProductService {
 
   getcart: string = "/api/v4/cart";
   deletecart: string = "/api/v4/cart-product/";
-  productUrl: string = "https://uat.ordering-dalle.ekbana.net/api/v4/product/";
+  product: string = "/api/v4/product/";
   addtocart: string = "/api/v4/cart-product"
-  patchcart: string = '/api/v4/cart-product/'
+  patchcart: string = "/api/v4/cart-product/"
 
   constructor(private http: HttpClient) { }
 
   getProductDetails (): Observable<any> {
-    return this.http.get(this.productUrl)
+    return this.http.get(this.baserUrl + this.product)
   }
 
   getSingleProductDetails(id:number): Observable<any> {
-    return this.http.get(this.productUrl+id)
+    return this.http.get(this.baserUrl + this.product + id)
   }
 
   addToCart(productId: any, priceId: any) {

@@ -16,17 +16,17 @@ export class CheckoutComponent implements OnInit {
   add_to_cart: any;
   totalItems: number = 0;
 
-  addressForm: FormGroup;
+  // addressForm: FormGroup;
 
   constructor(private product: ProductService, private message: MessageService, 
-    private formBuilder: FormBuilder, private deliveryService: DeliveryService) { 
+    private formBuilder: FormBuilder) { 
 
-    this.addressForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      latitude: ['', [Validators.required]],
-      longitude: ['', [Validators.required]],
-      isDefault: [true, [Validators.required]]
-    })
+    // this.addressForm = this.formBuilder.group({
+    //   title: ['', [Validators.required]],
+    //   latitude: ['', [Validators.required]],
+    //   longitude: ['', [Validators.required]],
+    //   isDefault: [true, [Validators.required]]
+    // })
 
     this.product.getCartItems().subscribe((response) => {
       this.add_to_cart = response['data']['cartProducts'];
@@ -34,8 +34,7 @@ export class CheckoutComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-    }
-    )
+    })
   }
 
   deleteCart(id: number) {
