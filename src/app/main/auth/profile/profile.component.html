@@ -3,18 +3,70 @@
     <!-- mail -->
     <div class="mail">
       <h3>User Profile</h3>
+      <!-- <div style="float: right; width: 100%; margin-top: 5em !important;">
+        <button (click)="showUpdateProfile()" type="button" class="btn btn-info">Update Profile</button>
+        <button (click)="showChangePassword()" type="button" class="btn btn-info">Change Password</button>
+      </div> -->
+
       <div class="agileinfo_mail_grids">
-        <div
-          class="col-md-4 agileinfo_mail_grid_left"
-          style="width: 25% !important"
-          *ngIf="userDetails"
-        >
-          <img
-            src="{{userDetails.image}}"
-            class="profile_image"
-            alt=""
-          />
+        <div>
+          <div
+            class="col-md-4 agileinfo_mail_grid_left"
+            style="width: 25% !important; margin: 20px; width: 33%"
+            *ngIf="userDetails"
+          >
+            <img src="{{ userDetails.image }}" class="profile_image" alt="" />
+          </div>
+
+          <div
+            class="row"
+            style="
+              margin-bottom: 3rem;
+              border: 2px solid blue;
+              border-radius: 30px;
+              width: 67%;
+            "
+          >
+            <div class="col-xl-8" style="margin: 20px">
+              <!-- Account details card-->
+              <div class="card mb-4">
+                <form>
+                  <div class="profile_info">
+                    <h4>
+                      <strong> Username : </strong>
+                      <span>{{ userDetails.username }}</span>
+                    </h4>
+                  </div>
+                  <div class="profile_info">
+                    <h4>
+                      <strong> First Name : </strong>
+                      <span>{{ userDetails.firstName }}</span>
+                    </h4>
+                  </div>
+                  <div class="profile_info">
+                    <h4>
+                      <strong> Last Name : </strong>
+                      <span>{{ userDetails.lastName }}</span>
+                    </h4>
+                  </div>
+                  <div class="profile_info">
+                    <h4>
+                      <strong> Email : </strong>
+                      <span>{{ userDetails.email }}</span>
+                    </h4>
+                  </div>
+                  <div class="profile_info">
+                    <h4>
+                      <strong> Phone Number : </strong>
+                      <span>{{ userDetails.mobileNumber }}</span>
+                    </h4>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div
           class="col-md-8 agileinfo_mail_grid_right"
           style="
@@ -22,15 +74,19 @@
             padding: 2em 1em;
             padding: 1rem 2rem;
             margin-top: 20px;
+            margin-bottom: 20px;
             background-color: #d1b3c4 !important;
             color: #69707a !important;
           "
         >
+          <h3 style="font-size: 24px; padding-bottom: 2em">
+            Update Profile Details
+          </h3>
           <div class="row">
             <div class="col-xl-8">
               <!-- Account details card-->
               <div class="card mb-4">
-                <div class="card-body"  *ngIf="userDetails">
+                <div class="card-body" *ngIf="userDetails">
                   <form>
                     <!-- Form Group (username)-->
                     <div class="mb-3 profile_div">
@@ -44,7 +100,7 @@
                         id="inputUsername"
                         type="text"
                         placeholder="Enter your username"
-                        value="{{userDetails.username}}"
+                        value="{{ userDetails.username }}"
                       />
                     </div>
                     <!-- Form Row-->
@@ -59,7 +115,7 @@
                           id="inputFirstName"
                           type="text"
                           placeholder="First Name"
-                          value="{{userDetails.firstName}}"
+                          value="{{ userDetails.firstName }}"
                         />
                       </div>
                       <!-- Form Group (last name)-->
@@ -72,7 +128,7 @@
                           id="inputLastName"
                           type="text"
                           placeholder="Last Name"
-                          value="{{userDetails.lastName}}"
+                          value="{{ userDetails.lastName }}"
                         />
                       </div>
                     </div>
@@ -85,7 +141,7 @@
                         id="inputEmail"
                         type="text"
                         placeholder="Email"
-                        value="{{userDetails.email}}"
+                        value="{{ userDetails.email }}"
                       />
                     </div>
                     <div class="mb-3 profile_div">
@@ -97,7 +153,7 @@
                         id="inputPhone"
                         type="text"
                         placeholder="Phone Number"
-                        value="{{userDetails.mobileNumber}}"
+                        value="{{ userDetails.mobileNumber }}"
                       />
                     </div>
 
@@ -107,51 +163,66 @@
                     </button>
                   </form>
                 </div>
-
-                <!-- <div class="card-body">
-                  <form>
-                    <div class="mb-3">
-                      <label class="small mb-1" for="currentPassword"
-                        >Current Password</label
-                      >
-                      <input
-                        class="form-control"
-                        id="currentPassword"
-                        type="password"
-                        placeholder="Enter current password"
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="small mb-1" for="newPassword"
-                        >New Password</label
-                      >
-                      <input
-                        class="form-control"
-                        id="newPassword"
-                        type="password"
-                        placeholder="Enter new password"
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="small mb-1" for="confirmPassword"
-                        >Confirm Password</label
-                      >
-                      <input
-                        class="form-control"
-                        id="confirmPassword"
-                        type="password"
-                        placeholder="Confirm new password"
-                      />
-                    </div>
-                    <button class="btn btn-primary" type="button">Save</button>
-                  </form>
-                </div> -->
-
               </div>
             </div>
           </div>
         </div>
-        <div class="clearfix"></div>
+
+        <div
+          class="col-md-8 agileinfo_mail_grid_right"
+          style="
+            border: 1px solid black;
+            padding: 2em 1em;
+            padding: 1rem 2rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #d1b3c4 !important;
+            color: #69707a !important;
+          "
+        >
+          <h3 style="font-size: 24px; padding-bottom: 2em">
+            Change Password
+          </h3>
+          <div class="card-body">
+            <form>
+              <div class="mb-3 profile_div">
+                <label class="small mb-1" for="currentPassword"
+                  >Current Password</label
+                >
+                <input
+                  class="form-control"
+                  formControlName="oldPassword"
+                  id="currentPassword"
+                  type="password"
+                  placeholder="Enter current password"
+                />
+              </div>
+              <div class="mb-3 profile_div">
+                <label class="small mb-1" for="newPassword">New Password</label>
+                <input
+                  class="form-control"
+                  formControlName="newPassword"
+                  id="newPassword"
+                  type="password"
+                  placeholder="Enter new password"
+                />
+              </div>
+              <div class="mb-3 profile_div">
+                <label class="small mb-1" for="confirmPassword"
+                  >Confirm Password</label
+                >
+                <input
+                  class="form-control"
+                  formControlName="confirmPassword"
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm new password"
+                />
+              </div>
+              <button class="btn btn-primary" type="button">Change Password</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <!-- //mail -->

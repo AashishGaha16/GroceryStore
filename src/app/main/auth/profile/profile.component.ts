@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersAuthenticationService } from 'src/app/services/auth/users-authentication.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -69,21 +70,55 @@ import { UsersAuthenticationService } from 'src/app/services/auth/users-authenti
         margin-left: 1rem;
         margin-right: 1rem;
     }
+    .profile_info {
+      padding: 0.8em;
+    }
   `]
 })
 export class ProfileComponent implements OnInit {
 
+  // updateProfileBoolean: boolean = false;
+  // changePasswordBoolean: boolean = false;
+  changePasswordForm: FormGroup;
   userDetails: any;
 
-  constructor(private userAuth: UsersAuthenticationService) { 
+  constructor(private formBuilder: FormBuilder, private userAuth: UsersAuthenticationService) { 
+    this.changePasswordForm = this.formBuilder.group({
+      oldPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    })
+
     this.userAuth.showUser().subscribe((data) => {
       this.userDetails = data['data']
       console.log(data['data'])
     })
   }
 
+  // mustMatch(newPassword: string, confirmPassword: string) {
+  //   return (formGroup: FormGroup) => {
+  //     const newPass = formGroup.controls[newPassword];
+  //     const confPass = formGroup.controls[confirmPassword];
+  //     if (confPass.errors && !confPass.errors.mustMatch) {
+  //       return
+  //     }
+  //     if (newPass.value !== confPass.value) {
+  //       confPass.setErrors({mustMatch:true})
+  //     }
+  //     else {
+  //       confPass.setErrors(null);
+  //     }
+  //   }
+  // }
+
   ngOnInit(): void {
   }
 
+  UpdateProfile() {
+  }
+
+  ChangePassword() {
+    // this.userAuth.changePassword().subscribe
+  }
 
 }

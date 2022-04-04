@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { SignupComponent } from 'src/app/main/auth/signup/signup.component';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/main/auth/login/login.component';
+import { ProfileComponent } from 'src/app/main/auth/profile/profile.component';
 
 
 @Injectable({
@@ -37,8 +38,8 @@ export class UsersAuthenticationService {
     return this.http.post<any>(this.baseurl + this.login, data);
   }
 
-  changePassword () {
-
+  changePassword (profileData: ProfileComponent) {
+    return this.http.post<any>(this.baseurl + this.changepassword, profileData);
   }
 
   forgotPassword () {
