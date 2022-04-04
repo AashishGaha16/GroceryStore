@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class DalleComponent implements OnInit {
 
   dallemomos: any;
+  totalItems: any;
+  page: number = 1;
 
   constructor(private products:ProductService) { 
     this.products.getProductDetails().subscribe(
@@ -19,6 +21,7 @@ export class DalleComponent implements OnInit {
             return title
           }
       })
+      this.totalItems = data['data'].filter(('DALLE MOMOS')).length;
     })
   }
 

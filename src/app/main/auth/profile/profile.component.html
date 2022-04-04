@@ -30,7 +30,7 @@
             <div class="col-xl-8" style="margin: 20px">
               <!-- Account details card-->
               <div class="card mb-4">
-                <form>
+                <form *ngIf="userDetails">
                   <div class="profile_info">
                     <h4>
                       <strong> Username : </strong>
@@ -87,7 +87,7 @@
               <!-- Account details card-->
               <div class="card mb-4">
                 <div class="card-body" *ngIf="userDetails">
-                  <form>
+                  <form [formGroup]="updateInfo" (ngSubmit)="updateProfile()">
                     <!-- Form Group (username)-->
                     <div class="mb-3 profile_div">
                       <label
@@ -101,6 +101,7 @@
                         type="text"
                         placeholder="Enter your username"
                         value="{{ userDetails.username }}"
+                        disabled
                       />
                     </div>
                     <!-- Form Row-->
@@ -112,11 +113,25 @@
                         >
                         <input
                           class="form-control"
+                          formControlName="first-name"
                           id="inputFirstName"
                           type="text"
                           placeholder="First Name"
-                          value="{{ userDetails.firstName }}"
+                          value=""
                         />
+                        <span
+                          *ngIf="
+                            updateInfoControls['first-name'].errors &&
+                            (updateInfoControls['first-name'].touched ||
+                              updateInfoControls['first-name'].dirty)
+                          "
+                        >
+                          <span
+                            class="text-danger"
+                            *ngIf="updateInfoControls['first-name'].errors?.['required']"
+                            >* firstname is required to update changes</span
+                          >
+                        </span>
                       </div>
                       <!-- Form Group (last name)-->
                       <div class="col-md-6">
@@ -125,11 +140,25 @@
                         >
                         <input
                           class="form-control"
+                          formControlName="last-name"
                           id="inputLastName"
                           type="text"
                           placeholder="Last Name"
-                          value="{{ userDetails.lastName }}"
+                          value=""
                         />
+                        <span
+                          *ngIf="
+                            updateInfoControls['last-name'].errors &&
+                            (updateInfoControls['last-name'].touched ||
+                              updateInfoControls['last-name'].dirty)
+                          "
+                        >
+                          <span
+                            class="text-danger"
+                            *ngIf="updateInfoControls['last-name'].errors?.['required']"
+                            >* lastname is required to update changes</span
+                          >
+                        </span>
                       </div>
                     </div>
                     <div class="mb-3 profile_div">
@@ -142,6 +171,7 @@
                         type="text"
                         placeholder="Email"
                         value="{{ userDetails.email }}"
+                        disabled
                       />
                     </div>
                     <div class="mb-3 profile_div">
@@ -154,13 +184,17 @@
                         type="text"
                         placeholder="Phone Number"
                         value="{{ userDetails.mobileNumber }}"
+                        disabled
                       />
                     </div>
 
                     <!-- Save changes button-->
-                    <button class="btn btn-primary" type="button">
-                      Save changes
-                    </button>
+                    <input
+                      [disabled]="!updateInfo.valid"
+                      type="submit"
+                      value="Save Changes"
+                      style="margin-left: 0 !important"
+                    />
                   </form>
                 </div>
               </div>
@@ -180,32 +214,70 @@
             color: #69707a !important;
           "
         >
-          <h3 style="font-size: 24px; padding-bottom: 2em">
-            Change Password
-          </h3>
+          <h3 style="font-size: 24px; padding-bottom: 2em">Change Password</h3>
           <div class="card-body">
-            <form>
+            <form
+              [formGroup]="changePasswordForm"
+              (ngSubmit)="changePassword()"
+            >
               <div class="mb-3 profile_div">
                 <label class="small mb-1" for="currentPassword"
                   >Current Password</label
                 >
                 <input
                   class="form-control"
-                  formControlName="oldPassword"
+                  formControlName="old-password"
                   id="currentPassword"
                   type="password"
                   placeholder="Enter current password"
                 />
+                <span
+                  *ngIf="
+                    changePasswordFormControls['old-password'].errors &&
+                    (changePasswordFormControls['old-password'].touched ||
+                      changePasswordFormControls['old-password'].dirty)
+                  "
+                >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  changePasswordFormControls['old-password'].errors?.['required']
+                "
+                    >* Enter current password</span
+                  >
+                </span>
               </div>
               <div class="mb-3 profile_div">
                 <label class="small mb-1" for="newPassword">New Password</label>
                 <input
                   class="form-control"
-                  formControlName="newPassword"
+                  formControlName="new-password"
                   id="newPassword"
                   type="password"
                   placeholder="Enter new password"
                 />
+                <span
+                  *ngIf="
+                    changePasswordFormControls['new-password'].errors &&
+                    (changePasswordFormControls['new-password'].touched ||
+                      changePasswordFormControls['new-password'].dirty)
+                  "
+                >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  changePasswordFormControls['new-password'].errors?.['required']
+                "
+                    >* Enter new password</span
+                  >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  changePasswordFormControls['new-password'].errors?.['minlength']
+                "
+                    >* password must be at least 6 characters</span
+                  >
+                </span>
               </div>
               <div class="mb-3 profile_div">
                 <label class="small mb-1" for="confirmPassword"
@@ -213,27 +285,47 @@
                 >
                 <input
                   class="form-control"
-                  formControlName="confirmPassword"
+                  formControlName="confirm-password"
                   id="confirmPassword"
                   type="password"
                   placeholder="Confirm new password"
                 />
+                <span
+                  *ngIf="
+                    changePasswordFormControls['confirm-password'].errors &&
+                    (changePasswordFormControls['confirm-password'].touched ||
+                      changePasswordFormControls['confirm-password'].dirty)
+                  "
+                >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  changePasswordFormControls['confirm-password'].errors?.['required']
+                "
+                    >* Enter confirm password</span
+                  >
+                  <span
+                    *ngIf="
+                      changePasswordFormControls['confirm-password'].touched &&
+                      changePasswordFormControls['new-password'].value !=
+                        changePasswordFormControls['confirm-password'].value
+                    "
+                  >
+                    * password and confirm password didn't match.
+                  </span>
+                </span>
               </div>
-              <button class="btn btn-primary" type="button">Change Password</button>
+              <input
+                [disabled]="!changePasswordForm.valid"
+                type="submit"
+                value="Change Password"
+                style="margin-left: 0 !important"
+              />
             </form>
           </div>
         </div>
       </div>
     </div>
-    <!-- //mail -->
   </div>
   <div class="clearfix"></div>
 </div>
-<!-- map -->
-<div class="map">
-  <!-- <iframe
-    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951"
-    style="border: 0"
-  ></iframe> -->
-</div>
-<!-- //map -->

@@ -13,7 +13,7 @@
         >
           <div
             class="col-md-3 w3ls_w3l_banner_left w3ls_w3l_banner_left_asdfdfd" 
-            *ngFor="let product of riceAndNoodles"
+            *ngFor="let product of riceAndNoodles  |  paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalItems }"
             style="padding-bottom: 30px"
           >
             <div class="hover14 column">
@@ -93,6 +93,7 @@
               </div>
             </div>
           </div>
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>
     </div>

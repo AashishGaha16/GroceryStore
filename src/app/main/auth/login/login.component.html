@@ -21,8 +21,22 @@
               placeholder="Password"
             />
           </div>
-          <input type="submit" value="Login" />
+          <input [disabled]="!loginForm.valid"type="submit" value="Login" />
         </form>
+      </div>
+      <div>
+        <div *ngIf="alert" class="alert alert-danger" role="alert">
+          <button
+            type="button"
+            (click)="closeAlert()"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="alert-heading">Email and Password did not match.</h4>
+        </div>
       </div>
       <div class="cta"><a routerLink="/forgot_password">Forgot your password?</a></div>
       <div class="cta" style="background-color: grey; border: 1px solid white">

@@ -17,6 +17,7 @@ export class UsersAuthenticationService {
   login = 'api/v4/auth/login';
   changepassword = 'api/v4/profile/change-password';
   forgotpassword = 'api/v4/auth/forgot-password';
+  updateprofile = 'api/v4/profile'
   profile = 'api/v4/profile/show/';
 
   // Login Body key values
@@ -38,12 +39,16 @@ export class UsersAuthenticationService {
     return this.http.post<any>(this.baseurl + this.login, data);
   }
 
-  changePassword (profileData: ProfileComponent) {
+  changeUserPassword (profileData: ProfileComponent) {
     return this.http.post<any>(this.baseurl + this.changepassword, profileData);
   }
 
   forgotPassword () {
     
+  }
+
+  updateProfile(updateFormData: ProfileComponent): Observable<any> {
+    return this.http.patch<any>(this.baseurl + this.updateprofile, updateFormData)
   }
 
   showUser(): Observable<any> {

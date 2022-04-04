@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class RiceComponent implements OnInit {
 
   riceAndNoodles: any;
+  totalItems: any;
+  page: number = 1;
 
   constructor(private products: ProductService) { 
     this.products.getProductDetails().subscribe(
@@ -19,6 +21,7 @@ export class RiceComponent implements OnInit {
             return title
           }
       })
+      this.totalItems = data['data'].filter(('RICE AND NOODLES')).length;
     })
   }
 

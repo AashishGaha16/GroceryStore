@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class NonvegComponent implements OnInit {
 
   nonvegitems: any;
+  totalItems: any;
+  page: number = 1;
 
   constructor(private products: ProductService) { 
     this.products.getProductDetails().subscribe(
@@ -19,6 +21,7 @@ export class NonvegComponent implements OnInit {
             return title
           }
       })
+      this.totalItems = data['data'].filter(('NON VEG')).length;
     })
   }
 

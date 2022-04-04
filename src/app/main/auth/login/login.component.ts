@@ -12,6 +12,7 @@ import { UsersAuthenticationService } from 'src/app/services/auth/users-authenti
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  alert: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private userAuth: UsersAuthenticationService) { 
     this.loginForm = this.formBuilder.group({
@@ -37,11 +38,19 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         })
       }
+      else {
+        alert("Email and Password did not match!!!")
+        this.alert = true;
+      }
     }
     catch (error) {
       console.log("Login Failed")
       alert("Login Failed " + error)
     }
+  }
+
+  closeAlert() {
+    this.alert = false;
   }
 
 }

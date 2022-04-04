@@ -46,6 +46,10 @@ const routes: Routes = [
       {
         path: '',
         loadChildren:()=>import('./banner/banner.module').then(m=>m.BannerModule)
+      },
+      {
+        path: '',
+        loadChildren:()=>import('./checkout/checkout.module').then(m=>m.CheckoutModule)
       }
     ]
   }

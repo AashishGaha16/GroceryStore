@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersAuthenticationService } from 'src/app/services/auth/users-authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -79,19 +80,25 @@ export class ProfileComponent implements OnInit {
 
   // updateProfileBoolean: boolean = false;
   // changePasswordBoolean: boolean = false;
+  updateInfo: FormGroup;
   changePasswordForm: FormGroup;
   userDetails: any;
 
-  constructor(private formBuilder: FormBuilder, private userAuth: UsersAuthenticationService) { 
+
+  constructor(private formBuilder: FormBuilder, private userAuth: UsersAuthenticationService, private route: Router) { 
+    this.updateInfo = this.formBuilder.group({
+      "first-name": ['', [Validators.required]],
+      "last-name": ['', [Validators.required]]
+    })
+    
     this.changePasswordForm = this.formBuilder.group({
-      oldPassword: ['', [Validators.required]],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
+      "old-password": ['', [Validators.required]],
+      "new-password": ['', [Validators.required, Validators.minLength(6)]],
+      "confirm-password": ['', [Validators.required]]
     })
 
     this.userAuth.showUser().subscribe((data) => {
       this.userDetails = data['data']
-      console.log(data['data'])
     })
   }
 
@@ -114,11 +121,28 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  UpdateProfile() {
+  updateProfile() {
+    if (this.updateInfo.valid) {
+      this.userAuth.updateProfile(this.updateInfo.value).subscribe((data) => {
+        alert("Profile Updated Successfully!!!");
+        this.route.navigate(['/profile'])
+      })
+    }
   }
 
-  ChangePassword() {
-    // this.userAuth.changePassword().subscribe
+  changePassword() {
+    this.userAuth.changeUserPassword(this.changePasswordForm.value).subscribe((data) => {
+      alert("Password Changed Successfully!!!");
+      this.route.navigate(['/profile'])
+    })
+  }
+
+  get changePasswordFormControls() {
+    return this.changePasswordForm.controls;
+  }
+
+  get updateInfoControls() {
+    return this.updateInfo.controls;
   }
 
 }

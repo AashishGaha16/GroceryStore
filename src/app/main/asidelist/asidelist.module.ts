@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AsidelistRoutingModule } from './asidelist-routing.module';
 import { ProductsComponent } from './staticList/products/products.component';
@@ -45,7 +46,8 @@ import { VegComponent } from './dynamicList/snacks/veg/veg.component';
   imports: [
     CommonModule,
     AsidelistRoutingModule,
-    LayoutModule
+    LayoutModule,
+    NgxPaginationModule
   ]
 })
 export class AsidelistModule { }

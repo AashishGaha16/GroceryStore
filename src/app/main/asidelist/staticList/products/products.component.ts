@@ -9,10 +9,13 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductsComponent implements OnInit {
 
   products: any;
+  totalItems: any;
+  page: number = 1
 
   constructor(private productData:ProductService) { 
     this.productData.getProductDetails().subscribe((data) => {
-      this.products = data['data']
+      this.products = data['data'];
+      this.totalItems = data['data'].length;
     });
   }
 

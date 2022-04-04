@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class FrozenComponent implements OnInit {
 
   frozenProducts: any;
+  totalItems: any;
+  page: number = 1;
 
   constructor(private products: ProductService) { 
     this.products.getProductDetails().subscribe(
@@ -19,6 +21,7 @@ export class FrozenComponent implements OnInit {
             return title
           }
       })
+      this.totalItems = data['data'].filter(('FROZEN ITEMS')).length;
     })
   }
 

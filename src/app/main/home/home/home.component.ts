@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.productData.getProductDetails().subscribe((data) => {
       this.products = data['data']
       this.totalItems = data['data'].length;
-      console.log(data['data'])
     });
 
     this.configData.getConfigsData().subscribe((data) => {
