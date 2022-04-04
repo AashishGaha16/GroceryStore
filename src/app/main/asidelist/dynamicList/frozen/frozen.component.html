@@ -50,7 +50,7 @@
                         </div>
                       </div>
                       <div class="snipcart-details">
-                        <form action="#" method="post">
+                        <div>
                           <fieldset>
                             <input type="hidden" name="cmd" value="_cart" />
                             <input type="hidden" name="add" value="1" />
@@ -82,9 +82,10 @@
                               name="submit"
                               value="Add to cart"
                               class="button"
+                              (click)="postAddtocart(product.id, product.unitPrice[0].id)"
                             />
                           </fieldset>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </figure>

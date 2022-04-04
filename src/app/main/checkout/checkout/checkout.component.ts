@@ -41,8 +41,8 @@ export class CheckoutComponent implements OnInit {
     const c = confirm("Are you sure you want to delete this cart item?")
     if (c) {
       this.product.deleteCartItems(id).subscribe((response) => {
+        
         this.message.successMessage("Cart Item Removed Successfully!!!");
-
         this.product.getCartItems().subscribe((response) => {
           this.add_to_cart = response['data']['cartProducts'];
           this.totalItems = this.add_to_cart.length;
