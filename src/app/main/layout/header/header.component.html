@@ -3,17 +3,16 @@
     <a routerLink="products">Today's special Offers !</a>
   </div>
   <div class="w3l_search">
-    <form action="#" method="post">
-      <input
-        type="text"
-        name="Product"
-        value="Search a product..."
-        onfocus="this.value = '';"
-        onblur="if (this.value == '') {this.value = 'Search a product...';}"
-        required=""
-      />
-      <input type="submit" value=" " />
-    </form>
+    <input
+      type="text"
+      name="Product"
+      value="Search a product..."
+      onfocus="this.value = '';"
+      onblur="if (this.value == '') {this.value = 'Search a product...';}"
+      required=""
+      [(ngModel)]="search_query.title"
+    />
+    <input type="submit" value=" " />
   </div>
   <div class="product_list_header">
     <form action="#" method="post" class="last">
@@ -62,15 +61,15 @@
 
   <div class="w3l_header_right" id="auth-icon" *ngIf="!userLoggedIn">
     <div dropdown class="w3ls_vegetables dropdown">
-        <a dropdownToggle class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+      <a dropdownToggle class="dropdown-toggle" data-toggle="dropdown"
+        ><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span
+      ></a>
       <ul class="dropdown-menu">
         <li><a routerLink="login" id="auth-icon">Login</a></li>
         <li><a routerLink="signup" id="auth-icon">Sign Up</a></li>
       </ul>
     </div>
   </div>
-
-
 
   <div class="w3l_header_right1">
     <h2><a routerLink="contactus">Contact Us</a></h2>

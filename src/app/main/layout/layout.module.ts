@@ -8,6 +8,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AsideComponent } from './aside/aside.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FilterPipeModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,

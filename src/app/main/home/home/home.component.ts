@@ -5,19 +5,28 @@ import { CategoryService } from 'src/app/services/category/category.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styles: [
-    
-  ]
+  styles: [`
+    .wallpaper_image_height {
+      width: 100%;
+      height: 240px;
+      opacity: 0.5;
+      border: 1px solid green;
+    }
+  `]
 })
 export class HomeComponent implements OnInit {
 
   products: any;
   configs: any;
-  totalItems: any;
-  page: number = 1
 
-  constructor(private productData: ProductService, private configData: CategoryService) { 
-    this.productData.getProductDetails().subscribe((data) => {
+  //pagination
+  totalItems: any;
+  page: number = 1;
+
+  search_query: any = {title: ''}
+
+  constructor(private productService: ProductService, private configData: CategoryService) { 
+    this.productService.getProductDetails().subscribe((data) => {
       this.products = data['data']
       this.totalItems = data['data'].length;
     });
@@ -25,6 +34,16 @@ export class HomeComponent implements OnInit {
     this.configData.getConfigsData().subscribe((data) => {
       this.configs = data['data']
     });
+  }
+
+  postAddtocart(productId: number, priceId: number,) {
+    this.productService.addToCart(productId, priceId).subscribe((response) => {
+      alert("Add to cart successful")
+    },
+    (err) => {
+      alert(err)
+    }
+    )
   }
 
 

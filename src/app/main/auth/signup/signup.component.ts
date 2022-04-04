@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersAuthenticationService } from 'src/app/services/auth/users-authentication.service';
 import { Router } from '@angular/router'
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent implements OnInit {
   signupMessage:string = '';
   alert:boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router:Router, private signupFormData: UsersAuthenticationService) { 
+  constructor(private formBuilder: FormBuilder, private router:Router, private signupFormData: UsersAuthenticationService, private message: MessageService) { 
     this.signupForm = this.formBuilder.group({
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
@@ -34,22 +35,20 @@ export class SignupComponent implements OnInit {
   }
   
   signupUser() {
-    try{
-      if(this.signupForm.valid){
-        this.signupFormData.userSignup(this.signupForm.value).subscribe((data) =>{
-          alert("Signup Successful");
-          this.signupForm.reset();
-          this.router.navigate(['login']);
-          this.alert = true;
-        }), 
-        (err: any) => {
-          alert("Signup Failed")
-          console.log("error: " + err)
+
+    if(this.signupForm.valid){
+      this.signupFormData.userSignup(this.signupForm.value).subscribe((response) =>{
+        this.message.successMessage("Login Successful!!!")
+        this.signupForm.reset();
+        this.router.navigate(['login']);
+        this.alert = true;
+      },
+      (err: any) => {
+        const error = err.error['errors'];
+        for(let e in error){
+          this.message.errorMessage(error[e].title , error[e].message);
         }
-      }
-    }
-    catch (error) {
-      alert(error)
+      })
     }
   }
   

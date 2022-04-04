@@ -71,7 +71,7 @@
   <div class="wthree_banner_bottom_left_grid_sub1">
     <div class="col-md-4 wthree_banner_bottom_left">
       <div class="wthree_banner_bottom_left_grid">
-        <img src="assets/images/4.jpg" alt=" " class="img-responsive" />
+        <img src="assets/images/taco.jpg" alt=" " class="img-responsive wallpaper_image_height" />
         <div class="wthree_banner_bottom_left_grid_pos">
           <h4>Discount Offer <span>25%</span></h4>
         </div>
@@ -79,7 +79,7 @@
     </div>
     <div class="col-md-4 wthree_banner_bottom_left">
       <div class="wthree_banner_bottom_left_grid">
-        <img src="assets/images/5.jpg" alt=" " class="img-responsive" />
+        <img src="assets/images/sizzler.jpg" alt=" " class="img-responsive wallpaper_image_height" />
         <div class="wthree_banner_btm_pos">
           <h3>introducing <span>best store</span> for <i>groceries</i></h3>
         </div>
@@ -87,7 +87,7 @@
     </div>
     <div class="col-md-4 wthree_banner_bottom_left">
       <div class="wthree_banner_bottom_left_grid">
-        <img src="assets/images/6.jpg" alt=" " class="img-responsive" />
+        <img src="assets/images/icecream.jpg" alt=" " class="img-responsive wallpaper_image_height" />
         <div class="wthree_banner_btm_pos1">
           <h3>Save <span>Upto</span> $10</h3>
         </div>
@@ -100,6 +100,18 @@
 <!-- top-brands -->
 <!-- <div class="top-brands"> -->
 <div class="container">
+  <div class="w3l_search" style="float: right">
+    <input
+      type="text"
+      name="Product"
+      value="Search a product..."
+      onfocus="this.value = '';"
+      onblur="if (this.value == '') {this.value = 'Search a product...';}"
+      required=""
+      [(ngModel)]="search_query.title"
+    />
+    <input type="submit" value=" " />
+  </div>
   <h2 class="w3l_fruit" style="text-align: center; font-weight: bold">
     Products
   </h2>
@@ -108,7 +120,12 @@
   >
     <div
       class="col-md-3 w3ls_w3l_banner_left w3ls_w3l_banner_left_asdfdfd"
-      *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalItems }"
+      *ngFor="
+        let product of products
+          | filterBy: search_query
+          | paginate
+            : { itemsPerPage: 8, currentPage: page, totalItems: totalItems }
+      "
       style="padding-bottom: 30px"
     >
       <div class="hover14 column">
@@ -161,6 +178,7 @@
                           name="submit"
                           value="Add to cart"
                           class="button"
+                          (click)="postAddtocart(product.id, product.unitPrice[0].id)"
                         />
                       </fieldset>
                     </form>
@@ -175,7 +193,6 @@
   </div>
 
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
-
 </div>
 <!-- </div> -->
 <!-- //top-brands -->
