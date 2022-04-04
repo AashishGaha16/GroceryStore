@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
 
-    if(this.loginForm.valid){
+    if(this.loginForm.valid) {
         this.userAuth.userLogin(this.loginForm.value).subscribe((response) =>{
         this.userAuth.setToken(response['access_token']);
         this.message.successMessage("Login Successful!!!")

@@ -5511,6 +5511,22 @@ height: 10rem;
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
 .profile_info {
   padding: 0.8em;
+}
+
+.profile_image_cart {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.delivery_address {
+  border: 1px solid black;
+  padding: 0.3em;
+  margin-bottom: 0.5rem;
+}
+
+.add_location_input {
+  padding-bottom: 0.5rem;
 }

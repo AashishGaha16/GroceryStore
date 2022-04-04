@@ -4,6 +4,7 @@ import { SignupComponent } from 'src/app/main/auth/signup/signup.component';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/main/auth/login/login.component';
 import { ProfileComponent } from 'src/app/main/auth/profile/profile.component';
+import { ForgotPasswordComponent } from 'src/app/main/auth/forgot-password/forgot-password.component';
 
 
 @Injectable({
@@ -43,8 +44,8 @@ export class UsersAuthenticationService {
     return this.http.post<any>(this.baseurl + this.changepassword, profileData);
   }
 
-  forgotPassword () {
-    
+  forgotPassword (forgotPasswordForm: ForgotPasswordComponent) {
+    return this.http.post<any>(this.baseurl + this.forgotpassword, forgotPasswordForm);
   }
 
   updateProfile(updateFormData: ProfileComponent): Observable<any> {

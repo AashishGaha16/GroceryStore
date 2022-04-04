@@ -4,42 +4,61 @@
       <h3>Chec<span>kout</span></h3>
 
       <div class="checkout-right">
-        <h4>Your shopping cart contains: <span>3 Products</span></h4>
+        <h4>
+          Your shopping cart contains: <span>{{ totalItems }} Products</span>
+        </h4>
         <table class="timetable_sub">
           <thead>
             <tr>
               <th>SL No.</th>
               <th>Product</th>
-              <th>Quality</th>
+              <th>Quantity</th>
               <th>Product Name</th>
 
               <th>Price</th>
               <th>Remove</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngFor="let item of add_to_cart; let index = index">
             <tr class="rem1">
-              <td class="invert">1</td>
+              <td class="invert">{{ index + 1 }}</td>
               <td class="invert-image">
                 <a href="single.html"
-                  ><img src="images/1.png" alt=" " class="img-responsive"
+                  ><img
+                    src="{{ item.product.categoryBackgroundImage }}"
+                    alt=" "
+                    class="img-responsive profile_image_cart"
                 /></a>
               </td>
               <td class="invert">
                 <div class="quantity">
                   <div class="quantity-select">
-                    <div class="entry value-minus">&nbsp;</div>
-                    <div class="entry value"><span>1</span></div>
-                    <div class="entry value-plus active">&nbsp;</div>
+                    <div
+                      class="entry value-minus"
+                      (click)="decreaseQuantity(item.id)"
+                    >
+                      &nbsp;
+                    </div>
+                    <div class="entry value">
+                      <span>{{ item.quantity }}</span>
+                    </div>
+                    <div
+                      class="entry value-plus active"
+                      (click)="increaseQuantity(item.id)"
+                    >
+                      &nbsp;
+                    </div>
                   </div>
                 </div>
               </td>
-              <td class="invert">Fortune Sunflower Oil</td>
+              <td class="invert">{{ item.product.title }}</td>
 
-              <td class="invert">$290.00</td>
+              <td class="invert">
+                Rs {{ item.product.unitPrice[0].sellingPrice }}
+              </td>
               <td class="invert">
                 <div class="rem">
-                  <div class="close1"></div>
+                  <div class="close1" (click)="deleteCart(item.id)"></div>
                 </div>
               </td>
             </tr>
@@ -48,15 +67,59 @@
       </div>
       <div class="checkout-left">
         <div class="col-md-4 checkout-left-basket">
-          <h4>Continue to basket</h4>
-          <ul>
-            <li>Product1 <i>-</i> <span>$15.00 </span></li>
-            <li>Product2 <i>-</i> <span>$25.00 </span></li>
-            <li>Product3 <i>-</i> <span>$29.00 </span></li>
-            <li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-            <li>Total <i>-</i> <span>$84.00</span></li>
-          </ul>
+          <div class="delivery_address">
+            <h4>Continue to basket</h4>
+            <ul>
+              <li>Product1 <i>-</i> <span>$15.00 </span></li>
+              <li>Product2 <i>-</i> <span>$25.00 </span></li>
+              <li>Product3 <i>-</i> <span>$29.00 </span></li>
+              <li>Total Service Charges <i>-</i> <span>$15.00</span></li>
+              <li>Total <i>-</i> <span>$84.00</span></li>
+            </ul>
+          </div>
+
+          <!-- <div class="delivery_address">
+            <h4>Add new Delivery Address</h4>
+            <form [formGroup]="addressForm" (ngSubmit)="addLocation()">
+              <div class="add_location_input">
+                <input
+                  class="form-control"
+                  formControlName="title"
+                  type="text"
+                  placeholder="Location"
+                />
+              </div>
+              <div class="add_location_input">
+                <input
+                  class="form-control"
+                  formControlName="latitude"
+                  type="text"
+                  placeholder="Longitude"
+                />
+              </div>
+              <div class="add_location_input">
+                <input
+                  class="form-control"
+                  formControlName="longitude"
+                  type="text"
+                  placeholder="latitude"
+                />
+              </div>
+              <div class="add_location_input">
+                <label style="font-weight: normal; padding-right: 1em;">Is Default: </label>
+                <label style="font-weight: normal; padding-right: 1em;">
+                    <input type="radio" name="isDefault" formControlName="isDefault" [value]="true" />Yes
+                </label>
+                <label style="font-weight: normal; padding-right: 1em;">
+                    <input type="radio" name="isDefault" formControlName="isDefault" [value]="false" />No
+                </label>
+            </div>
+              <button [disabled]="!addressForm.valid" type="button" class="btn btn-info">Add Location</button>
+            </form>
+          </div> -->
+        
         </div>
+        
         <div class="col-md-8 address_form_agile">
           <h4>Add a new Details</h4>
           <form
@@ -109,7 +172,10 @@
                   </div>
                   <div class="controls">
                     <label class="control-label">Address type: </label>
-                    <select class="form-control option-w3ls" style="padding: 0.5em !important">
+                    <select
+                      class="form-control option-w3ls"
+                      style="padding: 0.5em !important"
+                    >
                       <option>Office</option>
                       <option>Home</option>
                       <option>Commercial</option>
